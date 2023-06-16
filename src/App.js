@@ -31,13 +31,15 @@ const App = () => {
   ];
 
   return (
-    <Card className="expenses ">
+    <>
       <h2>Let's get started!</h2>
-      {expenses.map((data, index) => (
-        <ExpenseItem data={data} key={index} />
-      ))}
-    </Card>
+      <Card className="expenses ">
+        {expenses.map((data, index) => (
+          <ExpenseItem data={data} key={index} />
+        ))}
+      </Card>
+    </>
   );
-}
+};
 
 export default App;
