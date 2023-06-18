@@ -34,8 +34,8 @@ const App = () => {
     <>
       <h2>Let's get started!</h2>
       <Card className="expenses ">
-        {expenses.map((data, index) => (
-          <ExpenseItem data={data} key={index} />
+        {expenses.map((data) => (
+          <ExpenseItem data={data} key={data.id} />
         ))}
       </Card>
     </>
