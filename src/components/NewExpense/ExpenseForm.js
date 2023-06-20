@@ -1,18 +1,19 @@
 import { useState } from "react";
 import "./ExpenseForm.css";
 const ExpenseForm = () => {
-  const [enteredTitle, setEnteredTitle] = useState("");
-  const [enteredAmount, setEnteredAmount] = useState("");
-  const [enteredDate, setEnteredDate] = useState("");
+  const [formData, setFormData] = useState({
+    title: "",
+    amount: 0,
+    date: "",
+  });
 
-  const enteredTitleHandler = (e) => {
-    setEnteredTitle(e.target.value);
-  };
-  const enteredAmountHandler = (e) => {
-    setEnteredAmount(e.target.value);
-  };
-  const enteredDateHandler = (e) => {
-    setEnteredDate(e.target.value);
+  const chandler = (e) => {
+    setFormData((prevState) => {
+      return {
+        ...prevState,
+        [e.target.name]: e.target.value,
+      };
+    });
   };
 
   return (
@@ -21,30 +22,33 @@ const ExpenseForm = () => {
         <div className="expense-form__control">
           <label>Title</label>
           <input
-            onChange={enteredTitleHandler}
+            onChange={chandler}
             type="text"
-            value={enteredTitle}
+            name="title"
+            value={formData.title}
           />
         </div>
         <div className="expense-form__control">
           <label>Amount</label>
           <input
-            onChange={enteredAmountHandler}
+            onChange={chandler}
             type="number"
+            name="amount"
             min="0.01"
             step="0.01"
             max="9999999999"
-            value={enteredAmount}
+            value={formData.amount}
           />
         </div>
         <div className="expense-form__control">
           <label>Date</label>
           <input
-            onChange={enteredDateHandler}
+            onChange={chandler}
             type="date"
+            name="date"
             min="2019-01-01"
             max="2023-07-01"
-            value={enteredDate}
+            value={formData.date}
           />
         </div>
       </div>
