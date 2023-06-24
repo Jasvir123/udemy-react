@@ -1,9 +1,9 @@
 import "./NewExpense.css";
 import ExpenseForm from "./ExpenseForm";
-const NewExpense = () => {
+const NewExpense = ({onSaveExpense}) => {
   return (
     <div className="new-expense">
-      <ExpenseForm />
+      <ExpenseForm onSaveExpense={onSaveExpense} />
     </div>
   );
 };

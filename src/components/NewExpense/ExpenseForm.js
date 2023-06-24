@@ -1,14 +1,13 @@
 import { useState } from "react";
 import "./ExpenseForm.css";
-const ExpenseForm = () => {
+const ExpenseForm = ({ onSaveExpense }) => {
   const initialFormData = {
     title: "",
-    amount: 0,
+    amount: "",
     date: "",
   };
   const [formData, setFormData] = useState(initialFormData);
 
-  console.log(formData);
   const chandler = (e) => {
     setFormData((prevState) => {
       return {
@@ -20,6 +19,7 @@ const ExpenseForm = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    onSaveExpense(formData);
     setFormData(initialFormData);
   };
 

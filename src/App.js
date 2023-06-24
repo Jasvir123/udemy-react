@@ -1,10 +1,11 @@
+import { useState } from "react";
 import ExpenseItem from "./components/Expenses/ExpenseItem";
 import "./components/Expenses/Expenses.css";
 import NewExpense from "./components/NewExpense/NewExpense";
 import Card from "./components/UI/Card";
 
 const App = () => {
-  const expenses = [
+  let initialExpenses = [
     {
       id: "e1",
       title: "Toilet Paper",
@@ -31,10 +32,21 @@ const App = () => {
     },
   ];
 
+  const [expenses, setExpenses] = useState(initialExpenses);
+
+  const saveExpenseHandler = (expense) => {
+    setExpenses((prevState) => {
+      return [
+        ...prevState,
+        { ...expense, id: Math.random(), date: new Date(expense.date) },
+      ];
+    });
+  };
+
   return (
     <>
-      <NewExpense />
-      <Card className="expenses ">
+      <NewExpense onSaveExpense={saveExpenseHandler} />
+      <Card className="expenses">
         {expenses.map((data) => (
           <ExpenseItem data={data} key={data.id} />
         ))}
