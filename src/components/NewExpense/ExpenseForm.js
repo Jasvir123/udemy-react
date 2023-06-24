@@ -21,8 +21,6 @@ const ExpenseForm = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     setFormData(initialFormData);
-    console.log(e.target);
-    console.log(new FormData(e.target).entries());
   };
 
   return (
