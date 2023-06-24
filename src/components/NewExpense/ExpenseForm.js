@@ -1,12 +1,14 @@
 import { useState } from "react";
 import "./ExpenseForm.css";
 const ExpenseForm = () => {
-  const [formData, setFormData] = useState({
+  const initialFormData = {
     title: "",
     amount: 0,
     date: "",
-  });
+  };
+  const [formData, setFormData] = useState(initialFormData);
 
+  console.log(formData);
   const chandler = (e) => {
     setFormData((prevState) => {
       return {
@@ -16,8 +18,15 @@ const ExpenseForm = () => {
     });
   };
 
+  const submitHandler = (e) => {
+    e.preventDefault();
+    setFormData(initialFormData);
+    console.log(e.target);
+    console.log(new FormData(e.target).entries());
+  };
+
   return (
-    <form>
+    <form onSubmit={submitHandler}>
       <div className="expense-form__controls">
         <div className="expense-form__control">
           <label>Title</label>
